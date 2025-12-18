@@ -59,15 +59,15 @@ def to_celsius(value: float, unit: Unit) -> float:
     raise AssertionError("Unreachable unit")
 
 
-def from_celsius(value_c: float, unit: Unit) -> float:
+def from_celsius(celsius_value: float, unit: Unit) -> float:
     # validate input in Celsius relative to absolute zero before converting
-    validate_physical(value_c, 'C')
+    validate_physical(celsius_value, 'C')
     if unit == 'C':
-        return value_c
+        return celsius_value
     if unit == 'F':
-        return value_c * 9.0 / 5.0 + 32.0
+        return celsius_value * 9.0 / 5.0 + 32.0
     if unit == 'K':
-        return value_c - ABSOLUTE_ZERO_C  # C to K
+        return celsius_value - ABSOLUTE_ZERO_C  # C to K
     raise AssertionError("Unreachable unit")
 
 
@@ -82,11 +82,11 @@ def convert(value: float, from_unit: str, to_unit: str) -> float:
     Returns:
         Converted temperature value as float.
     """
-    src = normalize_unit(from_unit)
-    dst = normalize_unit(to_unit)
-    c = to_celsius(value, src)
-    out = from_celsius(c, dst)
-    return float(out)
+    source_unit = normalize_unit(from_unit)
+    destination_unit = normalize_unit(to_unit)
+    temp_in_celsius = to_celsius(value, source_unit)
+    converted_value = from_celsius(temp_in_celsius, destination_unit)
+    return float(converted_value)
 
 
 def format_value(value: float, unit: Unit) -> str:

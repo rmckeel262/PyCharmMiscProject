@@ -12,7 +12,7 @@ Usage examples:
 import argparse
 import sys
 
-import temperature as temp
+import temperature
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -50,10 +50,10 @@ def main(argv=None) -> int:
     args = parser.parse_args(argv)
 
     try:
-        src = temp.normalize_unit(args.from_unit)
-        dst = temp.normalize_unit(args.to_unit)
-        result = temp.convert(args.value, src, dst)
-        print(temp.format_value(result, dst))
+        source_unit = temperature.normalize_unit(args.from_unit)
+        destination_unit = temperature.normalize_unit(args.to_unit)
+        result = temperature.convert(args.value, source_unit, destination_unit)
+        print(temperature.format_value(result, destination_unit))
         return 0
     except ValueError as e:
         print(str(e), file=sys.stderr)
