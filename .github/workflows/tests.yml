@@ -38,3 +38,24 @@ jobs:
           files: ./coverage.xml
           fail_ci_if_error: false
           token: ${{ secrets.CODECOV_TOKEN }}
+
+  java-build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java-version: ['11', '17', '21']
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Java ${{ matrix.java-version }}
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: ${{ matrix.java-version }}
+
+      - name: Compile Java
+        run: javac RockPaperScissors.java
+
+      - name: Verify class file
+        run: java -version && ls -la *.class
