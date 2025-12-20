@@ -1,5 +1,8 @@
 # PyCharmMiscProject
 
+[![Tests](https://github.com/rmckeel262/PyCharmMiscProject/actions/workflows/tests.yml/badge.svg)](https://github.com/rmckeel262/PyCharmMiscProject/actions/workflows/tests.yml)
+[![codecov](https://codecov.io/gh/rmckeel262/PyCharmMiscProject/branch/main/graph/badge.svg)](https://codecov.io/gh/rmckeel262/PyCharmMiscProject)
+
 A collection of Python utilities including a temperature conversion CLI, scientific calculator, and rock-paper-scissors game.
 
 ## Features
