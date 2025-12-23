@@ -22,7 +22,7 @@ class ScientificCalculator:
         if len(self.history) > 10:  # Keep only last 10 operations
             self.history.pop(0)
     
-    def basic_operations(self, a, b, operator):
+    def basic_operations(self, first_operand, second_operand, operator):
         """Perform basic arithmetic operations."""
         operations = {
             '+': lambda x, y: x + y,
@@ -34,8 +34,8 @@ class ScientificCalculator:
         }
         
         if operator in operations:
-            result = operations[operator](a, b)
-            operation_str = f"{a} {operator} {b}"
+            result = operations[operator](first_operand, second_operand)
+            operation_str = f"{first_operand} {operator} {second_operand}"
             self.add_to_history(operation_str, result)
             self.last_result = result
             return result
@@ -71,8 +71,8 @@ class ScientificCalculator:
                 self.add_to_history(operation_str, result)
                 self.last_result = result
                 return result
-            except ValueError as e:
-                raise ValueError(f"Math domain error for {function}({value}): {e}")
+            except ValueError as error:
+                raise ValueError(f"Math domain error for {function}({value}): {error}")
         else:
             raise ValueError(f"Unknown function: {function}")
     
@@ -186,14 +186,14 @@ def parse_input(user_input):
     
     # Check for basic operations
     operators = ['+', '-', '*', '/', '**', '%']
-    for op in operators:
-        if op in user_input:
-            parts = user_input.split(op)
+    for operator in operators:
+        if operator in user_input:
+            parts = user_input.split(operator)
             if len(parts) == 2:
                 try:
-                    a = float(parts[0].strip())
-                    b = float(parts[1].strip())
-                    return 'basic', (a, b, op)
+                    first_operand = float(parts[0].strip())
+                    second_operand = float(parts[1].strip())
+                    return 'basic', (first_operand, second_operand, operator)
                 except ValueError:
                     return 'error', "Invalid numbers in expression"
     
@@ -248,9 +248,9 @@ def main():
                 print(f"{func}({value}) = {result}")
             
             elif operation_type == 'basic':
-                a, b, op = data
-                result = calculator.basic_operations(a, b, op)
-                print(f"{a} {op} {b} = {result}")
+                first_operand, second_operand, operator = data
+                result = calculator.basic_operations(first_operand, second_operand, operator)
+                print(f"{first_operand} {operator} {second_operand} = {result}")
             
             elif operation_type == 'number':
                 print(f"Number entered: {data}")
@@ -263,8 +263,8 @@ def main():
         except KeyboardInterrupt:
             print("\n\nGoodbye!")
             break
-        except Exception as e:
-            print(f"An error occurred: {e}")
+        except Exception as error:
+            print(f"An error occurred: {error}")
             print("Type 'help' for usage instructions.")
 
 if __name__ == "__main__":
