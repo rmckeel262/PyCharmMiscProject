@@ -65,3 +65,12 @@ pytest -v
 ## License
 
 MIT
+
+## How to subscribe to Cloudflare WARP+ Unlimited
+
+Cloudflare’s WARP app offers a paid WARP+ Unlimited tier. To subscribe:
+1. Install the Cloudflare WARP app from the official store (iOS App Store, Google Play, or the Cloudflare website for desktop).
+2. Sign in with a Cloudflare account or create one when prompted.
+3. Open the app settings and select **Account** → **Upgrade to WARP+** (wording may vary slightly).
+4. Choose the **WARP+ Unlimited** option and complete the in-app purchase.
+5. After payment succeeds, return to the main screen and toggle WARP to **Connected**. The status should show **WARP+** confirming the subscription.
